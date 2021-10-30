@@ -46,3 +46,10 @@ Task 1.05
 - modified and applied new deployment using ```kubectl apply -f manifests/deployment.yaml```
 - Portforwarded the new pod by ```kubectl port-forward todoserver-dep-5f44bbc85c-q4xkm 3003:3000```
 - confirmed server now serves ```http://localhost:3003```
+
+Task 1.06
+
+- Deleted & Recreated cluster opening ports 8082 to nodes and 8081 to loadbalancer using ```k3d cluster create --port 8082:30003@agent:0 -p 8081:80@loadbalancer --agents 2```
+- created servicem.yaml for todoserver
+- applied both manifests to cluster using ```kubectl apply -f manifests/<file.yaml>```
+- confirmed i receive response from ```http://localhost:8082```

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoserver-svc
+spec:
+  type: NodePort
+  selector:
+    app: todoserver
+  ports:
+  - name: http
+    port: 1234
+    targetPort: 3000
+    nodePort: 30003
+    protocol: TCP
