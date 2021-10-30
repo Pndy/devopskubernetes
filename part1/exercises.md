@@ -50,6 +50,21 @@ Task 1.05
 Task 1.06
 
 - Deleted & Recreated cluster opening ports 8082 to nodes and 8081 to loadbalancer using ```k3d cluster create --port 8082:30003@agent:0 -p 8081:80@loadbalancer --agents 2```
-- created servicem.yaml for todoserver
+- created ```service.yaml``` for todoserver
 - applied both manifests to cluster using ```kubectl apply -f manifests/<file.yaml>```
 - confirmed i receive response from ```http://localhost:8082```
+
+Task 1.07
+
+- modified LogOutput to respond on '/logs', built and pushed to dockerhub
+under ```pndy/logoutput:1.07```
+- created service and ingress manifests for logoutput
+- applied both changes using ```kubectl apply -f manifests/```
+- confirmed it returns timestamp and hash on ```http://localhost:8081/logs``` and the hash updates every 5 seconds
+
+Task 1.08
+
+- modified ```service.yaml``` and added ```ingress.yaml``` for todoserver
+- stopped logservice ingress ```kubectl delete -f manifests/ingress.yaml```
+- applied todoserver using ```kubectl apply -f manifests/```
+- confirmed its working at ```http://localhost:8081/```

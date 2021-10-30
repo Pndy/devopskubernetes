@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: logoutput
-        image: pndy/logoutput:1.01
+        image: pndy/logoutput:1.07
