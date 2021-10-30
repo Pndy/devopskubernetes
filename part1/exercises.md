@@ -39,3 +39,10 @@ Task 1.04
 [pndy@fedora todoserver]$ kubectl logs todoserver-dep-f7646944d-6b8d2 
 Server started on port 3000
 ```
+
+Task 1.05
+
+- Made changes and pushed the new container to ```pndy/todoserver:1.05```
+- modified and applied new deployment using ```kubectl apply -f manifests/deployment.yaml```
+- Portforwarded the new pod by ```kubectl port-forward todoserver-dep-5f44bbc85c-q4xkm 3003:3000```
+- confirmed server now serves ```http://localhost:3003```

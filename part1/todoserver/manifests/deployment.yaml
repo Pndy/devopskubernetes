@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: todoserver
-        image: pndy/todoserver:1.02
+        image: pndy/todoserver:1.05
