@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoserver-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoserver
+  template:
+    metadata:
+      labels:
+        app: todoserver
+    spec:
+      containers:
+      - name: todoserver
+        image: pndy/todoserver:1.02
