@@ -68,3 +68,12 @@ Task 1.08
 - stopped logservice ingress ```kubectl delete -f manifests/ingress.yaml```
 - applied todoserver using ```kubectl apply -f manifests/```
 - confirmed its working at ```http://localhost:8081/```
+
+Task 1.09
+
+- Developed the application ```pingpong``` that responds to / route with ```pong 0``` with number increasing every request
+- built/pushed to dockerhub ```pndy/pingpong:1.09```
+- wrote deployment and service manifests, and modified logoutput ingress to include this, in addition to using rewrite-target to remove the kubernetes path /pingpong from application (that responds to /)
+- spent a bunch of time looking up why above doesnt work, finding k3s ships with traefik v2, and that changed things, so looked up more how to do it with that
+- created middleware for pingpong and added that as annotation to logoutput ingress
+- applied all of above, confirmed pingpong now works in /pingpong and /logs still works as normal
