@@ -77,3 +77,10 @@ Task 1.09
 - spent a bunch of time looking up why above doesnt work, finding k3s ships with traefik v2, and that changed things, so looked up more how to do it with that
 - created middleware for pingpong and added that as annotation to logoutput ingress
 - applied all of above, confirmed pingpong now works in /pingpong and /logs still works as normal
+
+Task 1.10
+
+- Split logoutput into 2 logapps, one for generating and one for serving the hashes. they are at ```pndy/loggenerator:1.10``` and ```pndy/logoutput:1.10.1``` (had trouble with deployment getting a previous version even if i had pushed over it)
+- modified ```deployment.yaml``` to support multiple containers and gave them a shared volume to share log data
+- applied the deployment, and confirmed ```http://localhost:8081/logs``` and ```http://localhost:8081/pingpong``` were still working fine
+- confirmed using Lens and going into both containers, that loggenerator was still logging the hashes and writing them to files/log.txt, and also that the files/log.txt was available from logoutput (just to make sure)
