@@ -15,12 +15,17 @@ spec:
       volumes:
         - name: log-volume
           emptyDir: {}
+        - name: shared-pings
+          persistentVolumeClaim:
+            claimName: logapps-claim
       containers:
         - name: logoutput
-          image: pndy/logoutput:1.10.1
+          image: pndy/logoutput:1.11.1
           volumeMounts:
             - name: log-volume
               mountPath: /usr/src/app/files
+            - name: shared-pings
+              mountPath: /usr/src/app/pings
         - name: loggenerator
           image: pndy/loggenerator:1.10
           volumeMounts:

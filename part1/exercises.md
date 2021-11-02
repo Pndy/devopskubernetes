@@ -84,3 +84,10 @@ Task 1.10
 - modified ```deployment.yaml``` to support multiple containers and gave them a shared volume to share log data
 - applied the deployment, and confirmed ```http://localhost:8081/logs``` and ```http://localhost:8081/pingpong``` were still working fine
 - confirmed using Lens and going into both containers, that loggenerator was still logging the hashes and writing them to files/log.txt, and also that the files/log.txt was available from logoutput (just to make sure)
+
+Task 1.11
+
+- created ```persistentvolume.yaml``` and ```persistentvolumeclaim.yaml```, and created the folder in docker container.
+- modified pingpong and logoutput applications to save/read from filepath specified in persistentvolume
+- with some struggle on apps, finally managed to make it work that can be found on ```pndy/logoutput:1.11.1``` and ```pndy/pingpong:1.11.6```
+-confirmed the data is persistent by deleting and recreating both deployments
