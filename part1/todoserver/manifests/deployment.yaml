@@ -12,6 +12,13 @@ spec:
       labels:
         app: todoserver
     spec:
+      volumes:
+      - name: image-cache
+        persistentVolumeClaim:
+          claimName: logapps-claim
       containers:
       - name: todoserver
-        image: pndy/todoserver:1.05
+        image: pndy/todoserver:1.12
+        volumeMounts:
+        - name: image-cache
+          mountPath: /usr/src/app/public

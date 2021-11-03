@@ -91,3 +91,9 @@ Task 1.11
 - modified pingpong and logoutput applications to save/read from filepath specified in persistentvolume
 - with some struggle on apps, finally managed to make it work that can be found on ```pndy/logoutput:1.11.1``` and ```pndy/pingpong:1.11.6```
 -confirmed the data is persistent by deleting and recreating both deployments
+
+Task 1.12
+
+- Modified todoserver for showing image on main route, and the image changes every day its requested by comparing image creationdate to currentdate (might be inefficient way but its working), built and pushed as ```pndy/todoserver:1.12```
+- modified othe other ingress to work for all 3 applications, and deleted todoserver original ingress. also updates its deployment for volume and container.
+- applied all changes to cluster, made sure all 3 routes still work, and that image stays for multiple refreshes, and that it changes when the date is changed in computer. 
