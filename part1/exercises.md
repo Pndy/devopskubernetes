@@ -97,3 +97,10 @@ Task 1.12
 - Modified todoserver for showing image on main route, and the image changes every day its requested by comparing image creationdate to currentdate (might be inefficient way but its working), built and pushed as ```pndy/todoserver:1.12```
 - modified othe other ingress to work for all 3 applications, and deleted todoserver original ingress. also updates its deployment for volume and container.
 - applied all changes to cluster, made sure all 3 routes still work, and that image stays for multiple refreshes, and that it changes when the date is changed in computer. 
+
+Task 1.13
+
+- Modified todoserver, added the todos and form (currently using express and pug templating engine for frontend)
+- built and pushed to ```pndy/todoserver:1.13```
+- modified todoserver deployment for 1.13 tag.
+- applied changes, tested and confirmed it now includes hardcoded todos and a form to add new ones.

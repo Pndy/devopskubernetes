@@ -11,9 +11,18 @@ const imagePath = path.join(__dirname, 'public', 'image.jpg')
 app.set('view engine', 'pug')
 app.use('/static', express.static('public'))
 
+const todos = [
+    {
+        text: 'Todo 1'
+    },
+    {
+        text: 'todo 2'
+    }
+]
+
 app.get('/', async (req, res) => {
     await download()
-    res.render('index')
+    res.render('index', { todos })
 })
 
 app.listen(port, () => {

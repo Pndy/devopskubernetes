@@ -18,7 +18,7 @@ spec:
           claimName: logapps-claim
       containers:
       - name: todoserver
-        image: pndy/todoserver:1.12
+        image: pndy/todoserver:1.13
         volumeMounts:
         - name: image-cache
           mountPath: /usr/src/app/public
