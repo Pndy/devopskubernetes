@@ -5,10 +5,10 @@ const genStr = () => {
 }
 
 let hash = `${genStr()}-${genStr()}-${genStr()}`
+fs.writeFileSync('/usr/src/app/files/log.txt', hash)
 
 setInterval(() => {
-    hash = `${genStr()}-${genStr()}-${genStr()}`
+    //hash = `${genStr()}-${genStr()}-${genStr()}`
     console.log(`${new Date().toISOString()}: ${hash}`)
-    fs.writeFileSync('/usr/src/app/files/log.txt', hash)
 }, 5000)
 
