@@ -111,3 +111,9 @@ Task 2.01
 - deprecated the route for /pingpong from ingress as unnessecary
 - built and pushed logoutput to ```pndy/logoutput:2.01.4```
 - applied all manifests, and made sure /logs still works and increments the counter
+
+Task 2.02
+
+- Rebuilt almost all of the todoserver, into frontend (NextJS app) and backend (Express server, almost same as before).
+- added manifests to both, built and pushed them as ```pndy/todoserver:2.02.1``` as backend and ```pndy/todofrontend:2.02.1``` as nextjs frontend. due to how nextjs, i didnt need to expose express backend to the world (as in, its not in ingress), and nextjs server side calls ```todoserver-svc:1234``` as the backend url
+- applied manifests, tested that the frontpage works, /logs route still works as intended, and that adding new todos works in frontpage and stay with reloads.

@@ -12,9 +12,9 @@ spec:
         path: "/"
         backend:
           service:
-            name: todoserver-svc
+            name: todofrontend-svc
             port:
-              number: 1234
+              number: 1237
       - pathType: Prefix
         path: "/logs"
         backend:

@@ -8,8 +8,6 @@ const fs = require('fs')
 const port = process.env.PORT || 3000
 const imagePath = path.join(__dirname, 'public', 'image.jpg')
 
-app.set('view engine', 'pug')
-app.use('/static', express.static('public'))
 
 const todos = [
     {
@@ -20,10 +18,34 @@ const todos = [
     }
 ]
 
-app.get('/', async (req, res) => {
+app.use(express.json())
+
+
+app.get('/image', async (req, res) => {
     await download()
-    res.render('index', { todos })
+    res.sendFile(imagePath)
 })
+
+app.get('/todos', (req, res) => {
+    res.json(todos)
+})
+
+app.post('/todos', (req, res) => {
+    const body = req.body
+
+    if(!body.text){
+        res.json({error: 'no todo included in request'})
+    }
+
+    const newTodo = {
+        text: body.text
+    }
+
+    todos.push(newTodo)
+
+    res.json(newTodo)
+})
+
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`)
