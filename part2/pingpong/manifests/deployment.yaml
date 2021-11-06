@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpong-dep
+spec:
+  selector:
+    matchLabels:
+      app: pingpong
+  template:
+    metadata:
+      labels:
+        app: pingpong
+    spec:
+      volumes:
+        - name: shared-pings
+          persistentVolumeClaim:
+            claimName: logapps-claim
+      containers:
+      - name: pingpong
+        image: pndy/pingpong:1.11.6
+        volumeMounts:
+          - name: shared-pings
+            mountPath: /usr/src/app/files

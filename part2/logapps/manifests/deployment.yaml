@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logoutput-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logoutput
+  template:
+    metadata:
+      labels:
+        app: logoutput
+    spec:
+      volumes:
+        - name: log-volume
+          emptyDir: {}
+      containers:
+        - name: logoutput
+          image: pndy/logoutput:2.01.4
+          volumeMounts:
+            - name: log-volume
+              mountPath: /usr/src/app/files
+        - name: loggenerator
+          image: pndy/loggenerator:1.13
+          volumeMounts:
+            - name: log-volume
+              mountPath: /usr/src/app/files

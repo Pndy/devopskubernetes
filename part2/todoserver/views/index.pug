@@ -1,0 +1,12 @@
+html
+  body
+    h3="Hello App"
+    img(src="/static/image.jpg", alt="", width="300", height="300")
+
+    form(method="post")
+      input(type="text", name="todo")
+      input(type="submit", value="Add")
+
+    ul 
+      each val in todos
+        li= val.text

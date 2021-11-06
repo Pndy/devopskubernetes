@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoserver-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoserver
+  template:
+    metadata:
+      labels:
+        app: todoserver
+    spec:
+      volumes:
+      - name: image-cache
+        persistentVolumeClaim:
+          claimName: logapps-claim
+      containers:
+      - name: todoserver
+        image: pndy/todoserver:1.13
+        volumeMounts:
+        - name: image-cache
+          mountPath: /usr/src/app/public

@@ -104,3 +104,10 @@ Task 1.13
 - built and pushed to ```pndy/todoserver:1.13```
 - modified todoserver deployment for 1.13 tag.
 - applied changes, tested and confirmed it now includes hardcoded todos and a form to add new ones.
+
+Task 2.01
+
+- modified logoutput to get data from the kubernetes service for pingpong app, and removed the shared volume from logoutput (keeping the hash share volume and the volume on pingpong side for restarts)
+- deprecated the route for /pingpong from ingress as unnessecary
+- built and pushed logoutput to ```pndy/logoutput:2.01.4```
+- applied all manifests, and made sure /logs still works and increments the counter
