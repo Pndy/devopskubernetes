@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  namespace: apps-ns
   name: apps-pv
 spec:
   capacity:

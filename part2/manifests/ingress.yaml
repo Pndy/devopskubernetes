@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: logoutput-ingress
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: default-pingpong-stripprefix@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: apps-ns-pingpong-stripprefix@kubernetescrd
 spec:
   rules:
   - http:
@@ -12,14 +12,14 @@ spec:
         path: "/"
         backend:
           service:
-            name: todofrontend-svc
+            name: ingress-todofrontend-svc
             port:
               number: 1237
       - pathType: Prefix
         path: "/logs"
         backend:
           service:
-            name: logoutput-svc
+            name: ingress-logoutput-svc
             port: 
               number: 1235
       #- pathType: Prefix

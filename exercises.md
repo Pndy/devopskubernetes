@@ -117,3 +117,12 @@ Task 2.02
 - Rebuilt almost all of the todoserver, into frontend (NextJS app) and backend (Express server, almost same as before).
 - added manifests to both, built and pushed them as ```pndy/todoserver:2.02.1``` as backend and ```pndy/todofrontend:2.02.1``` as nextjs frontend. due to how nextjs, i didnt need to expose express backend to the world (as in, its not in ingress), and nextjs server side calls ```todoserver-svc:1234``` as the backend url
 - applied manifests, tested that the frontpage works, /logs route still works as intended, and that adding new todos works in frontpage and stay with reloads.
+
+Task 2.03 / 2.04
+
+- Created both namespaces using ```kubectl create namespace apps-ns``` and ```kubectl create namespace project-ns```
+- modified all relevant manifests to set the namespace.
+
+- created 2 ExternalName services, to link services from different namespaces to the default namespace where the ingress is at. (good or bad?)
+
+- made sure all routes still worked as usual (/logs still shows timestamp: hash and ping amounts, and / the frontend which can use the backend)
