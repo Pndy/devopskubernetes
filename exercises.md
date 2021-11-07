@@ -145,3 +145,9 @@ Task 2.07
 - Created postgres StatefulSet and headless service in ```part2/manifests/postgres``` folder. also created needed ```secret.yaml```, which was sealed and applied for all 3 namespaces (using the same database for both application namespaces).
 - removed the volume from pingpong application (probably should have removed earlier when it was made to be used from rest) and added env vars from earlier defined secrets (for pg pass), modified it to use the database (havent used Sequelize before so ugly code), and after some tinkering built and pushed to ```pndy/pingpong:2.07.10```.
 - Applied the application, tested that its still working on /logs, removed both pingpong pod and postgres pod, one at a time, to make sure things were saving/working correctly
+
+Task 2.08
+
+- all the hard work was done in 2.07, so now i just needed to modify the todo backend to select and insert from database, built and pushed as ```pndy/todoserver:2.08.1```
+- modified backend deployment so it gets the secrets as env vars.
+- applied all, tested that there were no pre-determined todos, and adding them does insert them into database for page refreshes.
