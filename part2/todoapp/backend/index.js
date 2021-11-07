@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const axios = require('axios')
+const { Sequelize, Model, DataTypes } = require('sequelize')
 
 const path = require('path')
 const fs = require('fs')
@@ -8,15 +9,39 @@ const fs = require('fs')
 const port = process.env.PORT || 3000
 const imagePath = path.join(__dirname, 'public', 'image.jpg')
 
+const sequelize = new Sequelize(`postgres://postgres:${process.env.POSTGRES_PASSWORD}@postgres-svc.default:5432`)
 
-const todos = [
-    {
-        text: 'Todo 1'
-    },
-    {
-        text: 'todo 2'
+const initDB = async() => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+        await sequelize.createSchema('tododb')
+        console.log('Schema created')
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
     }
-]
+}
+initDB()
+
+class Todo extends Model {}
+Todo.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    text: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+}, {
+    schema: 'tododb',
+    sequelize,
+    underscored: true,
+    timestamps: false,
+    modelName: 'todos'
+})
+Todo.sync()
 
 app.use(express.json())
 
@@ -26,22 +51,19 @@ app.get('/image', async (req, res) => {
     res.sendFile(imagePath)
 })
 
-app.get('/todos', (req, res) => {
+app.get('/todos', async(req, res) => {
+    const todos = await Todo.findAll()
     res.json(todos)
 })
 
-app.post('/todos', (req, res) => {
+app.post('/todos', async (req, res) => {
     const body = req.body
 
     if(!body.text){
         res.json({error: 'no todo included in request'})
     }
 
-    const newTodo = {
-        text: body.text
-    }
-
-    todos.push(newTodo)
+    const newTodo = await Todo.create({ text: body.text }) 
 
     res.json(newTodo)
 })
