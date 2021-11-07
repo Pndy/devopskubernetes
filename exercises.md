@@ -151,3 +151,13 @@ Task 2.08
 - all the hard work was done in 2.07, so now i just needed to modify the todo backend to select and insert from database, built and pushed as ```pndy/todoserver:2.08.1```
 - modified backend deployment so it gets the secrets as env vars.
 - applied all, tested that there were no pre-determined todos, and adding them does insert them into database for page refreshes.
+
+Task 2.09
+
+- Created new Cronjob using ```https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/``` as guide.
+- Created, built and pushed ```pndy/dailytodo:2.09.1```, that lives in project-ns, connects to database and adds new Todo with ```<date>: <random wikipedia entry>```.
+- applied cronjob to cluster, and made sure its correctly there ```kubectl get cronjobs -n project-ns```
+
+- I triggered the cronjob manually from Lens, and the execution was fine, it added the todo correctly and stopped the container.
+unfortunately i dont think k3d liked that manual triggering much, as i got errors to events log and little bit after the cluster stopped working (atleast i couldnt reach the services from browser). deleted the pod and job objects the manual trigger made and restarted cluster and everything is fine again.
+- just going to wait for actual cron runs to happen...
