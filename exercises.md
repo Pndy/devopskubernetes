@@ -126,3 +126,9 @@ Task 2.03 / 2.04
 - created 2 ExternalName services, to link services from different namespaces to the default namespace where the ingress is at. (good or bad?)
 
 - made sure all routes still worked as usual (/logs still shows timestamp: hash and ping amounts, and / the frontend which can use the backend)
+
+Task 2.05
+
+- Installed kubeseal to machine & cluster, and added 'secret.yaml' to gitignore to prevent leaking.
+- created test secret for logoutput, sealed it using ```kubeseal -o yaml <secret.yaml> sealedsecret.yaml``` and applied ```sealedsecret.yaml``` and modified ```deployment.yaml```.
+- entered logoutput container shell, and made sure the env var was applied correctly ```echo $SERVICE_KEY```

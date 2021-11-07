@@ -16,12 +16,28 @@ spec:
       volumes:
         - name: log-volume
           emptyDir: {}
+        - name: logoutput-config
+          configMap:
+            name: logoutput-dotenv
+            items:
+              - key: ".env"
+                path: ".env"
       containers:
         - name: logoutput
-          image: pndy/logoutput:2.03
+          image: pndy/logoutput:2.06
           volumeMounts:
             - name: log-volume
               mountPath: /usr/src/app/files
+            - name: logoutput-config
+              mountPath: /usr/src/app/.env
+              subPath: .env
+              readOnly: true
+          env:
+            - name: SERVICE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: service-apikey
+                  key: API_KEY
         - name: loggenerator
           image: pndy/loggenerator:1.13
           volumeMounts:
