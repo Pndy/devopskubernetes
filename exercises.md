@@ -139,3 +139,9 @@ Task 2.06
 - modified logoutput app to use dotenv package, and print 'MESSAGE' env var on the logs output. Built and pushed to ```pndy/logoutput:2.06```
 - Modified deployment to include configmap volume, and mounted it as a single file to the root app directory using subPath (great for single file into existing folder, painful for multiple files as you need separate volumeMounts for each file.)
 - applied deployment, and made sure 'Hello' is printed on top on /logs
+
+Task 2.07
+
+- Created postgres StatefulSet and headless service in ```part2/manifests/postgres``` folder. also created needed ```secret.yaml```, which was sealed and applied for all 3 namespaces (using the same database for both application namespaces).
+- removed the volume from pingpong application (probably should have removed earlier when it was made to be used from rest) and added env vars from earlier defined secrets (for pg pass), modified it to use the database (havent used Sequelize before so ugly code), and after some tinkering built and pushed to ```pndy/pingpong:2.07.10```.
+- Applied the application, tested that its still working on /logs, removed both pingpong pod and postgres pod, one at a time, to make sure things were saving/working correctly
