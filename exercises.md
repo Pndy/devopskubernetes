@@ -132,3 +132,10 @@ Task 2.05
 - Installed kubeseal to machine & cluster, and added 'secret.yaml' to gitignore to prevent leaking.
 - created test secret for logoutput, sealed it using ```kubeseal -o yaml <secret.yaml> sealedsecret.yaml``` and applied ```sealedsecret.yaml``` and modified ```deployment.yaml```.
 - entered logoutput container shell, and made sure the env var was applied correctly ```echo $SERVICE_KEY```
+
+Task 2.06
+
+- Created configmap for logoutput, that just has .env file with 'MESSAGE=Hello', and applied it to cluster.
+- modified logoutput app to use dotenv package, and print 'MESSAGE' env var on the logs output. Built and pushed to ```pndy/logoutput:2.06```
+- Modified deployment to include configmap volume, and mounted it as a single file to the root app directory using subPath (great for single file into existing folder, painful for multiple files as you need separate volumeMounts for each file.)
+- applied deployment, and made sure 'Hello' is printed on top on /logs
