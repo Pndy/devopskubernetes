@@ -13,7 +13,6 @@ const initDB = async() => {
         console.error('Unable to connect to the database:', error);
     }
 }
-initDB()
 
 class Todo extends Model {}
 Todo.init({
@@ -33,7 +32,6 @@ Todo.init({
     timestamps: false,
     modelName: 'todos'
 })
-Todo.sync()
 
 const getDaily = async () => {
     const response = await axios.get('https://en.wikipedia.org/wiki/Special:Random')
@@ -45,7 +43,12 @@ const addTodo = async () => {
         text: `${new Date().toISOString().split('T')[0]}: ${await getDaily()}`
     })
 }
-addTodo()
 
 
-sequelize.close()
+const main = async () => {
+    await initDB()
+    await Todo.sync()
+    await addTodo()
+    await sequelize.close()
+}
+main()

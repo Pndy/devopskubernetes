@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: todoserver
-        image: pndy/todoserver:2.08.1
+        image: pndy/todoserver:2.10.2
         envFrom:
           - secretRef:
               name: pg-secret

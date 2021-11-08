@@ -19,3 +19,5 @@ External Tools:
 SealedSecrets <https://github.com/bitnami-labs/sealed-secrets#installation>
 kubeseal -o yaml <secret.yaml> sealedsecret.yaml
                  ^ needs brackets
+
+kubectl -n prometheus port-forward <kube-prometheus-stack-grafana> <port>

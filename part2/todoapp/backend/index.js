@@ -59,15 +59,23 @@ app.get('/todos', async(req, res) => {
 app.post('/todos', async (req, res) => {
     const body = req.body
 
-    if(!body.text){
-        res.json({error: 'no todo included in request'})
+    if(!body.text || body.text === ''){
+        console.error('TODO ERROR: NOTEXT')
+        res.status(400).json({ error: 'no todo included in request' })
+        return
+    }
+
+    if(body.text.length > 140){
+        console.error(`TODO ERROR TOOLONG: ${body.text}`)
+        res.status(400).json({ error: 'todo length cannot exceed 140 characters' })
+        return
     }
 
     const newTodo = await Todo.create({ text: body.text }) 
+    console.info(`TODO ADDED: ${newTodo.text}`)
 
     res.json(newTodo)
 })
-
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`)

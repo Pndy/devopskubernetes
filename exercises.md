@@ -155,9 +155,18 @@ Task 2.08
 Task 2.09
 
 - Created new Cronjob using ```https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/``` as guide.
-- Created, built and pushed ```pndy/dailytodo:2.09.1```, that lives in project-ns, connects to database and adds new Todo with ```<date>: <random wikipedia entry>```.
-- applied cronjob to cluster, and made sure its correctly there ```kubectl get cronjobs -n project-ns```
+- Created, built and pushed ```pndy/dailytodo:2.09.2```, that lives in project-ns, connects to database and adds new Todo with ```<date>: <random wikipedia entry>```.
+- applied cronjob to cluster, and made sure its correctly there ```kubectl get cronjobs -n project-ns``` (and also using Lens)
 
 - I triggered the cronjob manually from Lens, and the execution was fine, it added the todo correctly and stopped the container.
 unfortunately i dont think k3d liked that manual triggering much, as i got errors to events log and little bit after the cluster stopped working (atleast i couldnt reach the services from browser). deleted the pod and job objects the manual trigger made and restarted cluster and everything is fine again.
 - just going to wait for actual cron runs to happen...
+
+Task 2.10
+- Installed Prometheus stack / Loki stack within their own namespaces.
+- Modified todoserver to output consolemessages on todo additions (and errors), built and pushed to ```pndy/todoserver:2.10.2``` and applied to cluster.
+- Port-forwarded Grafana using ```kubectl -n prometheus port-forward kube-prometheus-stack-1636319980-grafana-587b9dcbd5-4gc9g 3000```
+- Made new dashboard in grafana, set the log query as as ```{app="todoserver"} |="TODO"``` and visualization as Logs.
+- Output: [grafana panel showing logs](https://i.imgur.com/vxaLEUx.png)
+
+- ps. Had bunch of problems with Loki and linux fsnotify limits, had to increase the inotify.max_user_watches = 512, and after that everything works fine.

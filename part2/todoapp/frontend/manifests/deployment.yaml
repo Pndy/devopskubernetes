@@ -15,4 +15,4 @@ spec:
     spec:
       containers:
       - name: todofrontend
-        image: pndy/todofrontend:2.02.1
+        image: pndy/todofrontend:2.10

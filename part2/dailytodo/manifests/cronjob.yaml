@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
           - name: dailytodo
-            image: pndy/dailytodo:2.09.1
+            image: pndy/dailytodo:2.09.2
             envFrom:
             - secretRef:
                 name: pg-secret

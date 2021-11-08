@@ -14,7 +14,13 @@ const TodoPanel = (params) => {
         const response = await axios.post('/api/todos', {
           text: e.target.todo.value
         })
-        setTodos([...todos, await response.data])
+        const data = await response.data
+
+        if(data.error){
+            console.log(`Error: ${data.error}`)
+        }
+
+        setTodos([...todos, data])
     
         e.target.todo.value = ''
       }
