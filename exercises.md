@@ -187,3 +187,13 @@ Task 3.02
 - added default route http 200 responses to both apps due to ingress requiring it.
 - applied all, and made sure /pingpong responded with "pong <amount>" and /logs responded with the configmap message, loggenerator generated hash and timestamp, and the pong amount gotten from pingpong app.
 - ps. currently everything is on default namespace as im working thru this.
+
+Task 3.03
+
+- modified todoapps frontend and backend to work on GKE
+- Added kustomization files for both projects
+- made workflow to build, publish to GCR and deploy to GKE
+- after many tries, the workflow worked
+- Github workflow: https://i.imgur.com/SYLC2Gc.png
+- Lastly, added / route to ingress for frontend, and tested that the apps work together. Frontend gets the image from backend, and you are able to add todos that save to database.
+- ps. currently everything on default namespace
