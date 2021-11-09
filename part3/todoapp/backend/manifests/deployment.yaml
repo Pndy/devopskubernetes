@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: project-ns
   name: todoserver-dep
 spec:
   replicas: 1
@@ -15,7 +14,7 @@ spec:
     spec:
       containers:
       - name: todoserver
-        image: pndy/todoserver:2.10.2
+        image: gcr.io/PROJECT_ID/IMAGE_BACKEND:TAG
         envFrom:
           - secretRef:
               name: pg-secret

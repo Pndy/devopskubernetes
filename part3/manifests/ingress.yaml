@@ -20,3 +20,10 @@ spec:
             name: logoutput-svc
             port: 
               number: 80
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: todofrontend-svc
+            port: 
+              number: 80

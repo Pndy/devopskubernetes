@@ -8,6 +8,7 @@ env:
   GKE_CLUSTER: dwk-gke-cluster
   GKE_ZONE: europe-north1-b
   IMAGE: todofrontend
+  IMAGE_BACKEND: todobackend
 
 jobs:
   build-and-deploy:
@@ -28,19 +29,33 @@ jobs:
       - run: gcloud --quiet auth configure-docker
       - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
 
-      - name: Build
+      - name: Build Frontend
         run: cd ./part3/todoapp/frontend && docker build . -t "gcr.io/$PROJECT_ID/$IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
 
-      - name: Publish
+      - name: Build Backend
+        run: cd ./part3/todoapp/backend && docker build . -t "gcr.io/$PROJECT_ID/$IMAGE_BACKEND:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+
+      - name: Publish Frontend
         run: docker push "gcr.io/$PROJECT_ID/$IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+
+      - name: Publish Backend
+        run: docker push "gcr.io/$PROJECT_ID/$IMAGE_BACKEND:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
 
       - name: Setting up Kustomize
         uses: imranismail/setup-kustomize@v1
 
-      - name: Deploy
+      - name: Deploy Frontend
         run: |-
           cd ./part3/todoapp/frontend
           kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
           kustomize build . | kubectl apply -f -
-          kubectl rollout status deployment/$IMAGE
+          kubectl rollout status deployment/todofrontend-dep
+          kubectl get services -o wide
+
+      - name: Deploy Backend
+        run: |-
+          cd ./part3/todoapp/backend
+          kustomize edit set image gcr.io/PROJECT_ID/IMAGE_BACKEND:TAG=gcr.io/$PROJECT_ID/$IMAGE_BACKEND:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
+          kustomize build . | kubectl apply -f -
+          kubectl rollout status deployment/todoserver-dep
           kubectl get services -o wide
