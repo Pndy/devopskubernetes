@@ -197,3 +197,8 @@ Task 3.03
 - Github workflow: https://i.imgur.com/SYLC2Gc.png
 - Lastly, added / route to ingress for frontend, and tested that the apps work together. Frontend gets the image from backend, and you are able to add todos that save to database.
 - ps. currently everything on default namespace
+
+Task 3.04
+
+- Added namespaced deployments to workflow.
+- Also had to copy the ```pg-secret``` from default namespace to newly created namespace due to project backend requiring database access.
