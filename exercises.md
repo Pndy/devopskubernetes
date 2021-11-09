@@ -205,3 +205,9 @@ Task 3.04
 
 Task 3.05
 
+- Made new workflow ```delete.yaml```, and made the job run ```kubectl delete namespace <branchname>```.
+- Tested this out by creating new branch ```feature-1```, pushed it to github and let the 3.04 workflow create the environment (Confirmed recources were created).
+- After making sure resources existed and were properly deployed, i deleted the branch from github and watched as the delete workflow started running.
+- After workflow completed succesfully, confirmed that all the previously generated recourses (Project deployment on feature-1 namespace) were deleted.
+
+- at this point, i also stopped github from running actions as i didnt want them to be ran everytime i updated anything.
