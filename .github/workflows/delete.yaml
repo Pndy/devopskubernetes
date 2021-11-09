@@ -1,0 +1,31 @@
+name: Delete Environment on Branch deletion
+
+on:
+  delete:
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT_ID }}
+  GKE_CLUSTER: dwk-gke-cluster
+  GKE_ZONE: europe-north1-b
+
+jobs:
+  delete-environment:
+    name: Delete Environment from GKE
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup GCloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GKE_PROJECT_ID }}
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          export_default_credentials: true
+
+      - run: gcloud --quiet auth configure-docker
+      - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+
+      - name: Delete namespace
+        run: kubectl delete namespace ${GITHUB_REF#refs/heads/}

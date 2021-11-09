@@ -202,3 +202,6 @@ Task 3.04
 
 - Added namespaced deployments to workflow.
 - Also had to copy the ```pg-secret``` from default namespace to newly created namespace due to project backend requiring database access.
+
+Task 3.05
+
