@@ -21,3 +21,11 @@ kubeseal -o yaml <secret.yaml> sealedsecret.yaml
                  ^ needs brackets
 
 kubectl -n prometheus port-forward <kube-prometheus-stack-grafana> <port>
+
+
+GCLOUD GKE
+
+gcloud container clusters get-credentials dwk-gke-cluster --zone=europe-north1-b
+
+gcloud container clusters create dwk-gke-cluster --zone=europe-north1-b --release-channel=rapid --cluster-version=1.22
+gcloud container clusters delete dwk-gke-cluster --zone=europe-north1-b

@@ -170,3 +170,13 @@ Task 2.10
 - Output: [grafana panel showing logs](https://i.imgur.com/vxaLEUx.png)
 
 - ps. Had bunch of problems with Loki and linux fsnotify limits, had to increase the inotify.max_user_watches = 512, and after that everything works fine.
+
+
+Task 3.01
+
+- after setting up GCP/GKE, created new cluster ```gcloud container clusters create dwk-gke-cluster --zone=europe-north1-b --release-channel=rapid --cluster-version=1.22```
+- tried to install kubeseal so i could seal secrets, but installation failed (im assuming due to the cluster version)
+- modified postgres manifests to fit GKE, and deployed it and the needed secrets succesfully.
+- modified pingpong app (removed middleware due to GKE using different ingress controller), and made the service into LoadBalancer.
+- Applied the new app to cluster, tested that the ExternalIP service gives routes to the PingPong App, and that its connected to the postgres database correctly and counts the pongs.
+
