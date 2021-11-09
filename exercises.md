@@ -232,3 +232,10 @@ Task 3.09
 - set "250m" to logoutput due to it being more of a data server, that has a bigger possibility of spiking.
 
 - I also checked the graphs at GCP after applying 3.08 and 3.09 limits, to see how they look regarding the spikes and they look good/well within limits
+
+Task 3.10
+
+- Checked that Cloud Logging API was enabled (it was by default)
+- Entered the "Logs Explorer", filtered containers by name
+- Logs: https://i.imgur.com/JVZrVCC.png
+- ps. on grafana i was able to filter out the default sequelize database logging,
