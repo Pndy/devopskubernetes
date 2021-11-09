@@ -211,3 +211,24 @@ Task 3.05
 - After workflow completed succesfully, confirmed that all the previously generated recourses (Project deployment on feature-1 namespace) were deleted.
 
 - at this point, i also stopped github from running actions as i didnt want them to be ran everytime i updated anything.
+
+Task 3.06
+
+- making it to root later.
+
+Task 3.07
+
+- Ive chosen to continue using Postgres, as i had already deployed it into GKE for pingpong and todo apps.
+
+Task 3.08
+
+- As i looked from GCP metrics, both of them are using less than 50mb of ram, so ive limited it to 100mb incase it somewhat increases.
+- Cpu is harder to estimate, as for just me spam refreshing it, it spikes, but not that high so i limited it to quarter of a core (250m).
+
+Task 3.09
+
+- did the same spam refresh test on /logs, and watched the metrics.
+- I limited loggenerator and pingpong to "100m" cpu and "100Mi", due to both being light apps just occasionally generating data for others
+- set "250m" to logoutput due to it being more of a data server, that has a bigger possibility of spiking.
+
+- I also checked the graphs at GCP after applying 3.08 and 3.09 limits, to see how they look regarding the spikes and they look good/well within limits
