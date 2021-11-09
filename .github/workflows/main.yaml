@@ -1,0 +1,46 @@
+name: Deploy Frontend Application
+
+on:
+  push:
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT_ID }}
+  GKE_CLUSTER: dwk-gke-cluster
+  GKE_ZONE: europe-north1-b
+  IMAGE: todofrontend
+
+jobs:
+  build-and-deploy:
+    name: Build, Publish to GCR and Deploy to GKE
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup GCloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GKE_PROJECT_ID }}
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          export_default_credentials: true
+      
+      - run: gcloud --quiet auth configure-docker
+      - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+
+      - name: Build
+        run: cd ./part3/todoapp/frontend && docker build \
+            -t "gcr.io/$PROJECT_ID/$IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+
+      - name: Publish
+        run: docker push "gcr.io/$PROJECT_ID/$IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+
+      - name: Setting up Kustomize
+        uses: imranismail/setup-kustomize@v1
+
+      - name: Deploy
+        run: |-
+          kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
+          kustomize build . | kubectl apply -f -
+          kubectl rollout status deployment/$IMAGE
+          kubectl get services -o wide
