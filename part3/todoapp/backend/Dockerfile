@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm i
+RUN npm i && mkdir public
 
 EXPOSE 3000
 
