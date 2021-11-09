@@ -50,10 +50,14 @@ const setupCounter = async () => {
 }
 setupCounter()
 
-app.get('/', async (req, res) => {
+app.get('/pingpong', async (req, res) => {
     counter++
     await Ping.create({ ping: 1 })
     res.send(`pong ${counter}`)
+})
+
+app.get('/', async (req,res) => {
+    res.status(200).end()
 })
 
 app.listen(port, () => {

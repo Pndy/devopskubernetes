@@ -180,3 +180,10 @@ Task 3.01
 - modified pingpong app (removed middleware due to GKE using different ingress controller), and made the service into LoadBalancer.
 - Applied the new app to cluster, tested that the ExternalIP service gives routes to the PingPong App, and that its connected to the postgres database correctly and counts the pongs.
 
+Task 3.02
+
+- Modified pingpong to use NodePort and added ingress, and tested these working.
+- Added logapps, and modified it for GKE
+- added default route http 200 responses to both apps due to ingress requiring it.
+- applied all, and made sure /pingpong responded with "pong <amount>" and /logs responded with the configmap message, loggenerator generated hash and timestamp, and the pong amount gotten from pingpong app.
+- ps. currently everything is on default namespace as im working thru this.
