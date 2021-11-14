@@ -129,6 +129,10 @@ under ```pndy/logoutput:1.07```
 
 ## Task 2.05
 
+- Installed SOPS / Age, created key for secret and put it as correct envvar for decrypting.
+- Created new secret.yaml, encrypted it using sops to secret.enc.yaml
+- Deleted secret.yaml and decrypted it succesfully
+- What i also did:
 - Installed kubeseal to machine & cluster, and added 'secret.yaml' to gitignore to prevent leaking.
 - created test secret for logoutput, sealed it using ```kubeseal -o yaml <secret.yaml> sealedsecret.yaml``` and applied ```sealedsecret.yaml``` and modified ```deployment.yaml```.
 - entered logoutput container shell, and made sure the env var was applied correctly ```echo $SERVICE_KEY```

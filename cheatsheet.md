@@ -16,6 +16,11 @@ kubectl label <pod/deployment..> <name> <labelname=label>
 
 External Tools:
 
+SOPS/Age:
+
+sops --encrypt --age <public key> secret.yaml > secret.enc.yaml
+sops --decrypt secret.enc.yaml > secret.yaml
+
 SealedSecrets <https://github.com/bitnami-labs/sealed-secrets#installation>
 kubeseal -o yaml <secret.yaml> sealedsecret.yaml
                  ^ needs brackets
