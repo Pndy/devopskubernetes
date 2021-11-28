@@ -132,6 +132,7 @@ under ```pndy/logoutput:1.07```
 - Installed SOPS / Age, created key for secret and put it as correct envvar for decrypting.
 - Created new secret.yaml, encrypted it using sops to secret.enc.yaml
 - Deleted secret.yaml and decrypted it succesfully
+
 - What i also did:
 - Installed kubeseal to machine & cluster, and added 'secret.yaml' to gitignore to prevent leaking.
 - created test secret for logoutput, sealed it using ```kubeseal -o yaml <secret.yaml> sealedsecret.yaml``` and applied ```sealedsecret.yaml``` and modified ```deployment.yaml```.
@@ -179,7 +180,6 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
 ## Task 3.01
 
 - after setting up GCP/GKE, created new cluster ```gcloud container clusters create dwk-gke-cluster --zone=europe-north1-b --release-channel=rapid --cluster-version=1.22```
-- tried to install kubeseal so i could seal secrets, but installation failed (im assuming due to the cluster version)
 - modified postgres manifests to fit GKE, and deployed it and the needed secrets succesfully.
 - modified pingpong app (removed middleware due to GKE using different ingress controller), and made the service into LoadBalancer.
 - Applied the new app to cluster, tested that the ExternalIP service gives routes to the PingPong App, and that its connected to the postgres database correctly and counts the pongs.
@@ -225,11 +225,13 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
         - you dont need to worry about managing
         - sane defaults
         - Integrated into the environment (easy access from other gcloud services)
-        -additional features (easy database migration)
+        - additional features (easy database migration)
     - Cons
+        - more expensive at start (db-standard-1 starts out at ~51$/m, similar specs)
         - Not as much control (might not be able to choose postgres or maria/mysql, might not be able to which release)
 - DIY
     - Pros
+        - Starting out cheaper (n1-standard-1 starts out at ~25$/m, similar specs)
         - More Control over everything
         - More static pricing (scaling is x$ amount per new node, no per use charges)
     - Cons
