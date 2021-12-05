@@ -278,3 +278,9 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - Added lightship to todo backend
  - added readiness and liveness checks to both, backend using lightship and frontend using the next api's that connect to backend
  - Tested that both of them fail readiness/liveness without database, but applying it they both start working fine
+
+ ## Task 4.03
+
+  - ```count(count(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"}) by (uid))```
+  - returns: ```{}
+	2```
