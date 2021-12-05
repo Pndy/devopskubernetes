@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpong-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingpong
+  template:
+    metadata:
+      labels:
+        app: pingpong
+    spec:
+      containers:
+      - name: pingpong
+        image: pndy/pingpong:4.1.1
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          httpGet:
+            port: 9000
+            path: /ready
+        envFrom:
+          - secretRef:
+              name: pg-secret
+        resources:
+          limits:
+            cpu: "100m"
+            memory: "100Mi"

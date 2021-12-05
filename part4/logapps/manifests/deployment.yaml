@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logoutput-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logoutput
+  template:
+    metadata:
+      labels:
+        app: logoutput
+    spec:
+      volumes:
+        - name: log-volume
+          emptyDir: {}
+        - name: logoutput-config
+          configMap:
+            name: logoutput-dotenv
+            items:
+              - key: ".env"
+                path: ".env"
+      containers:
+        - name: logoutput
+          image: pndy/logoutput:4.1.1
+          readinessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            httpGet:
+              path: /ready
+              port: 9000
+          volumeMounts:
+            - name: log-volume
+              mountPath: /usr/src/app/files
+            - name: logoutput-config
+              mountPath: /usr/src/app/.env
+              subPath: .env
+              readOnly: true
+          env:
+            - name: SERVICE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: service-apikey
+                  key: API_KEY
+          resources:
+            limits:
+              cpu: "250m"
+              memory: "100Mi"
+        - name: loggenerator
+          image: pndy/loggenerator:1.13
+          volumeMounts:
+            - name: log-volume
+              mountPath: /usr/src/app/files
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"

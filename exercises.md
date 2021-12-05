@@ -266,3 +266,4 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
 ## Task 3.XX
 
 - I went back to check if i would be able to separate the applications into different namespaces, but due to Google's ingress controller not allowing ExternalNames (the way i used in part 2), i was not able to do it.
+
