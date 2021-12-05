@@ -272,3 +272,9 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
 - Added Lightship to pingpong and logoutput apps, and made them report ready in correct points (logoutput checks connection to pingpong, and pingpong check for db)
 - added readinessProbes to both logapps and pingpong, using lightship reporting (and filesystem check on loggenerator)
 - tested by deleting db deployment that both logoutput and pingpong fail to start, started db and looked as pingpong worked on next restart, and same for logoutput
+
+## Task 4.02
+
+ - Added lightship to todo backend
+ - added readiness and liveness checks to both, backend using lightship and frontend using the next api's that connect to backend
+ - Tested that both of them fail readiness/liveness without database, but applying it they both start working fine

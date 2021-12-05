@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoserver-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoserver
+  template:
+    metadata:
+      labels:
+        app: todoserver
+    spec:
+      containers:
+      - name: todoserver
+        image: pndy/todoserver:4.2
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          httpGet:
+            path: /ready
+            port: 9000
+        livenessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          httpGet:
+            path: /live
+            port: 9000
+        envFrom:
+          - secretRef:
+              name: pg-secret
+        resources:
+          limits:
+            cpu: "250m"
+            memory: "100Mi"

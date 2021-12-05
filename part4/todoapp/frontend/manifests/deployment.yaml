@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todofrontend-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todofrontend
+  template:
+    metadata:
+      labels:
+        app: todofrontend
+    spec:
+      containers:
+      - name: todofrontend
+        image: pndy/todofrontend:4.2
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          httpGet:
+            path: /api/todos
+            port: 3000
+        livenessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          httpGet:
+            path: /api/todos
+            port: 3000
+        resources:
+          limits:
+            cpu: "250m"
+            memory: "100Mi"
