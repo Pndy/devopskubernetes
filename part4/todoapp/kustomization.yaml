@@ -6,3 +6,4 @@ resources:
 
  - frontend/manifests/deployment.yaml
  - frontend/manifests/service.yaml
+ - frontend/manifests/service-todofrontend.yaml

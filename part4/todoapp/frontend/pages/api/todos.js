@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'http://todoserver-svc.default:1236'
+const baseUrl = 'http://todoserver-svc.project-ns:1236'
 
 export default async function handler(req, res) {
     if (req.method === 'GET') {

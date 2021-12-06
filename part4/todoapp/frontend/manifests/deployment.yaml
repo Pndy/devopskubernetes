@@ -1,12 +1,25 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: todofrontend-dep
+  namespace: project-ns
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: todofrontend
+  strategy:
+    canary:
+        analysis:
+          templates:
+          - templateName: cpu-rate
+        steps:
+          - setWeight: 25
+          - pause:
+              duration: 30s
+          - setWeight: 50
+          - pause:
+              duration: 30s
   template:
     metadata:
       labels:
@@ -14,7 +27,7 @@ spec:
     spec:
       containers:
       - name: todofrontend
-        image: pndy/todofrontend:4.2
+        image: pndy/todofrontend:4.4.4
         readinessProbe:
           initialDelaySeconds: 10
           periodSeconds: 5

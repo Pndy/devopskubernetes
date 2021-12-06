@@ -11,7 +11,7 @@ spec:
         path: "/"
         backend:
           service:
-            name: todofrontend-svc
+            name: ingress-todofrontend-svc
             port:
               number: 1237
       - pathType: Prefix

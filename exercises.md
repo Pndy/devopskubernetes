@@ -279,8 +279,18 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - added readiness and liveness checks to both, backend using lightship and frontend using the next api's that connect to backend
  - Tested that both of them fail readiness/liveness without database, but applying it they both start working fine
 
- ## Task 4.03
+## Task 4.03
 
-  - ```count(count(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"}) by (uid))```
-  - returns: ```{}
-	2```
+ - ```count(count(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"}) by (uid))```
+ - returns: ```{} 2```
+
+## Task 4.04
+
+ - Tested prometheus rate query on prometheus client (like above)
+ - Created and applied AnalysisTemplate for prject using above cpu rate query
+ - added analysistemplates to todo deployments
+ - made sure they run correctly
+
+## Task 4.05
+ 
+ - 
