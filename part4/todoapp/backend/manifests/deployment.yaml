@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: todoserver
-        image: pndy/todoserver:4.4.4
+        image: pndy/todoserver:4.5.3
         readinessProbe:
           initialDelaySeconds: 5
           periodSeconds: 5

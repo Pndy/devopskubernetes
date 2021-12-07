@@ -36,6 +36,11 @@ Todo.init({
     text: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    completed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
     }
 }, {
     schema: 'tododb',
@@ -44,7 +49,7 @@ Todo.init({
     timestamps: false,
     modelName: 'todos'
 })
-Todo.sync()
+Todo.sync({ alter: true })
 
 app.use(express.json())
 
@@ -78,6 +83,24 @@ app.post('/todos', async (req, res) => {
     console.info(`TODO ADDED: ${newTodo.text}`)
 
     res.json(newTodo)
+})
+
+app.put('/todos/:id', async (req, res) => {
+    const body = req.body
+
+    const todo = await Todo.findByPk(body.todo.id)
+    if(todo===null){
+        res.status(300).end()
+        return
+    }
+
+    await Todo.update({ completed: body.todo.completed }, {
+        where: {
+            id: body.todo.id
+        }
+    })
+    const todo2 = await Todo.findByPk(body.todo.id)
+    res.json(todo2)
 })
 
 app.get('/', async (req, res) => {

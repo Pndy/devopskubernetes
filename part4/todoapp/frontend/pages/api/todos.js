@@ -11,5 +11,10 @@ export default async function handler(req, res) {
         text: req.body.text
       })
       res.status(200).json(response.data)
+    } else if(req.method === 'PUT') {
+      const response = await axios.put(`${baseUrl}/todos/${req.body.todo.id}`, {
+        todo: req.body.todo
+      })
+      res.status(200).json(response.data)
     }
   }
