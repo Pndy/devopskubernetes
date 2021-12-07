@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoconsumer-dep
+  namespace: project-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todoconsumer
+  template:
+    metadata:
+      labels:
+        app: todoconsumer
+    spec:
+      containers:
+      - name: todoconsumer
+        image: pndy/todoconsumer:4.6.1
+        env:
+          - name: NATS_URL
+            value: nats://my-nats.default:4222

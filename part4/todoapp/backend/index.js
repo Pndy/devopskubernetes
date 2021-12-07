@@ -3,6 +3,12 @@ const app = express()
 const axios = require('axios')
 const { Sequelize, Model, DataTypes } = require('sequelize')
 const { createLightship } = require('lightship')
+const NATS = require('nats')
+
+const nc = NATS.connect({
+    url: process.env.NATS_URL || 'nats://my-nats.default:4222'
+})
+
 
 const lightship = createLightship()
 
@@ -82,6 +88,8 @@ app.post('/todos', async (req, res) => {
     const newTodo = await Todo.create({ text: body.text }) 
     console.info(`TODO ADDED: ${newTodo.text}`)
 
+    nc.publish("todos", JSON.stringify(newTodo))
+
     res.json(newTodo)
 })
 
@@ -100,6 +108,9 @@ app.put('/todos/:id', async (req, res) => {
         }
     })
     const todo2 = await Todo.findByPk(body.todo.id)
+
+    nc.publish("todos", JSON.stringify(todo2))
+
     res.json(todo2)
 })
 

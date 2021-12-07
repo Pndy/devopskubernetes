@@ -293,4 +293,12 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
 
 ## Task 4.05
  
- - 
+ - Added completed to frontend and backend
+ - Tested that it works, not much else
+
+## Task 4.06
+
+ - Installed NATS to kubernetes from helm
+ - modifed backend to publish to nats
+ - created todoconsumer, thats subscribed to backend using queue workers, that will print them to consumers console
+ - spammed actions on frontend to make sure queue works, and only one consumer gets each message (but still get distributed to different consumers)
