@@ -302,3 +302,12 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - modifed backend to publish to nats
  - created todoconsumer, thats subscribed to backend using queue workers, that will print them to consumers console
  - spammed actions on frontend to make sure queue works, and only one consumer gets each message (but still get distributed to different consumers)
+
+## Task 4.07
+
+ - installed flux to pc, set github token and all that
+ - bootstrapped flux to new github repo, found at ```https://github.com/Pndy/kube-cluster-gitops```
+ - setup this repo as source (had to make it public)
+ - setup pingpong app as test 'deployment'
+ - Deleted and recreated cluster, so its started from 0
+ - bootstrapped from the github repo, and looked as flux deployed the pingpong app (currently not working due to no db yet) 
