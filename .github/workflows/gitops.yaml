@@ -39,7 +39,7 @@ jobs:
     - name: Setting up Kustomize
       uses: imranismail/setup-kustomize@v1
 
-    - name: Update yamls
+    - name: Update kustomize yaml
       working-directory: part4/backend
       run: |-
         kustomize edit set image IMAGE_PLACEHOLDER=pndy/todoserver:${{ github.sha }}
