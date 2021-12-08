@@ -4,11 +4,8 @@ resources:
  - additionals/project-namespace.yaml
  - additionals/analysistemplate.yaml
 
- - backend/manifests/deployment.yaml
- - backend/manifests/service.yaml
+ - backend/kustomization.yaml
 
- - frontend/manifests/deployment.yaml
- - frontend/manifests/service.yaml
- - frontend/manifests/service-todofrontend.yaml
-
+ - frontend/kustomization.yaml
+ 
  - consumer/deployment.yaml
