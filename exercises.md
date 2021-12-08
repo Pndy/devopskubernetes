@@ -310,4 +310,14 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - setup this repo as source (had to make it public)
  - setup pingpong app as test 'deployment'
  - Deleted and recreated cluster, so its started from 0
- - bootstrapped from the github repo, and looked as flux deployed the pingpong app (currently not working due to no db yet) 
+ - bootstrapped from the github repo, and looked as flux deployed the pingpong app (currently not working due to no db yet)
+
+ ## Task 4.08
+
+  - made nats and argo-rollouts helm deployments using gitops
+  - made todoapp (frontend and backend) deployment using gitops
+  - made postgres deployment using gitops (excluding secrets)
+  - made ingress deployment using gitops
+  - made sure everything works together
+
+  - created github actions to build and publish backend to dockerhub, and commit to github
