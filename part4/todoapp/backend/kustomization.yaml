@@ -5,6 +5,6 @@ resources:
 - manifests/service.yaml
 
 images:
-  - name: IMAGE_PLACEHOLDER
-    newName: pndy/todoserver
-    newTag: 4.6.3
+- name: IMAGE_PLACEHOLDER
+  newName: pndy/todoserver
+  newTag: 503b5ddcae6066c6842acafc2057c123bce0daeb
