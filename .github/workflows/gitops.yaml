@@ -46,7 +46,7 @@ jobs:
 
     - uses: EndBug/add-and-commit@v7
       with:
-        add: '4-backend/kustomization.yaml'
+        add: 'part4/todoapp/backend/kustomization.yaml'
         message: new update to backend ${{ github.sha }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
