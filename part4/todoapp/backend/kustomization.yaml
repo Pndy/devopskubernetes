@@ -7,4 +7,4 @@ resources:
 images:
 - name: IMAGE_PLACEHOLDER
   newName: pndy/todoserver
-  newTag: 503b5ddcae6066c6842acafc2057c123bce0daeb
+  newTag: 4d58696e6ac3cc159ca72ca76a44e79ae4155cc3
