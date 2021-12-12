@@ -335,3 +335,9 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - made sure deleting base dummysite deployments deletes the associated pod and service
 
  - it has some problems, but its working
+
+## Task 5.02
+
+ - injecting the todoconsumer was successful, as it was normal Deployment
+ - as backend and frontend were switched over to rollouts, injecting didnt work. needed to change them back to deployments and inject them.
+ - opened the viz dashboard, to make sure everything was properly meshed

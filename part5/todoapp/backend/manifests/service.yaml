@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoserver-svc
+  namespace: project-ns
+spec:
+  selector:
+    app: todoserver
+  ports:
+  - port: 1236
+    targetPort: 3000
+    protocol: TCP
