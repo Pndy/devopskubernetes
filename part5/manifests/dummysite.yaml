@@ -1,0 +1,13 @@
+apiVersion: example.dwk/v1
+kind: DummySite
+metadata:
+  name: dummysite
+spec:
+  website_url: "http://example.com"
+---
+apiVersion: example.dwk/v1
+kind: DummySite
+metadata:
+  name: hn-dummysite
+spec:
+  website_url: "http://news.ycombinator.com/"

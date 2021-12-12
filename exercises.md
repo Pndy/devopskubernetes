@@ -314,10 +314,24 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
 
  ## Task 4.08
 
-  - made nats and argo-rollouts helm deployments using gitops
-  - made todoapp (frontend and backend) deployment using gitops
-  - made postgres deployment using gitops (excluding secrets)
-  - made ingress deployment using gitops
-  - made sure everything works together
+ - made nats and argo-rollouts helm deployments using gitops
+ - made todoapp (frontend and backend) deployment using gitops
+ - made postgres deployment using gitops (excluding secrets)
+ - made ingress deployment using gitops
+ - made sure everything works together
 
-  - created github actions to build and publish backend to dockerhub, and commit to github
+ - created github actions to build and publish backend to dockerhub, and commit to github
+
+## Task 5.01
+
+ - looked over the examples from material-examples
+ - tried making it in golang, switched to nodejs real quick
+
+ - created manifests based on examples
+ - created controller, and after multiple iterations its at ```pndy/dummysite-c:5.1.14```
+ - created base app at ```pndy/dummysite:5.1.1```
+ - applied all (everything else, but dummysite separately)
+ - made sure pod and service are created, port forwarded service to see that its working correctly (lens made it easy)
+ - made sure deleting base dummysite deployments deletes the associated pod and service
+
+ - it has some problems, but its working

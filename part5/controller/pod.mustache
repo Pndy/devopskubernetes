@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{{ container_name }}}
+  labels:
+    app: {{{ container_name }}}
+spec:
+  selector:
+    matchLabels:
+      app: {{{ container_name }}}
+  containers:
+  - name: {{{ container_name }}}
+    image: pndy/dummysite:5.1.1
+    env:
+    - name: WEBSITE_URL
+      value: "{{{ website_url }}}"
