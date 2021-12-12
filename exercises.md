@@ -341,3 +341,8 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - injecting the todoconsumer was successful, as it was normal Deployment
  - as backend and frontend were switched over to rollouts, injecting didnt work. needed to change them back to deployments and inject them.
  - opened the viz dashboard, to make sure everything was properly meshed
+
+## Task 5.03
+
+ - followed the canary release task
+ - image of the result is on ```part5/part5-03.png```
