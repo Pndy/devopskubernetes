@@ -358,3 +358,15 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - OpenShift Certified software Marketplace is more expansive than Google cloud markeplace for Anthos
  - OpenShift had initial release on 2011, while Anthos 1.0 was released 2019
  - (Preference) RedHat being better parent company than Google
+
+## Task 5.05
+
+ - I chose OpenFaaS as i had heard of it before.
+ - I deleted the current cluster, and created a blank one (Might not have needed to do that, but initially had problems so it was easier)
+ - Installed OpenFaaS using arkade, and port forwarded as explained
+ - installed Postgres from part4 folder to cluster
+ - installed faas-cli, created new function using it
+ - adapted previous pingpong app to work with openfaas
+ - created openfaas secret, where the application gets the postgres pass
+ - built, pushed to ```pndy/pingless:5.5```, and deployed to OpenFaaS automatically using faas-cli up
+ - tested it working, that it increases pongs counter for every request
