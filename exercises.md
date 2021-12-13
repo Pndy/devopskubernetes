@@ -346,3 +346,15 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
 
  - followed the canary release task
  - image of the result is on ```part5/part5-03.png```
+
+## Task 5.04
+
+### OpenShift against Anthos GKE
+
+ - Has Managed/Self-Managed options, when Anthos GKE only has managed
+ - Pure Multi-cloud options, when Anthos still needs ateast GCloud
+ -  OpenShift is Cerfitied Kubernetes Distribution, whereas Anthos doesnt seem to be
+ - OpenShift is its own platform, while Anthos is more of a backend to use different cloud platforms like GKE
+ - OpenShift Certified software Marketplace is more expansive than Google cloud markeplace for Anthos
+ - OpenShift had initial release on 2011, while Anthos 1.0 was released 2019
+ - (Preference) RedHat being better parent company than Google
