@@ -370,3 +370,50 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - created openfaas secret, where the application gets the postgres pass
  - built, pushed to ```pndy/pingless:5.5```, and deployed to OpenFaaS automatically using faas-cli up
  - tested it working, that it increases pongs counter for every request
+
+## Task 5.06
+
+- MongoDB (Outside this course)
+- MariaDB (Outside this course)
+- CockroachDB (Outside this course)
+- PostgresDB (Used as a database from part 2)
+
+- Nats (Used in part4 for message queue)
+
+- Bitnami (docker images - might have been used inside this course)
+- Eclipse Che (Online IDE - outside the course)
+- Gitpod (Online IDE - outside the course)
+- Gradle (Java build system - outside the course)
+- OpenAPI (outside the course)
+- Podman (Docker alt - outside the course)
+
+- Argo (CI/CD - From part 4 for rollouts)
+- Flux (CI/CD - From part 4 for gitops)
+- Github Actions (CI/CD from part 3 )
+ 
+- K3s (Used by K3d thats being used in this course)
+- OpenShift (Outside this course)
+ 
+- Kubernetes (Used this whole course)
+ 
+- Etcd (Used by k3d/k3s internally in the background)
+- CoreDNS (Used by k3d/k3s internally in the background)
+ 
+- gRPC (outside this course)
+ 
+- Nginx (outside this course)
+- Traefik (Used by k3s as default reverse proxy)
+ 
+- Linkerd (Used as service mesh on part 5)
+ 
+- Google Container Registry (used as container registry on part 3)
+- Google Kubernetes Engine (used as hosted kubernetes service on part 3)
+
+- Heroku (used outside this course)
+
+- Prometheus (Used for monitoring from part 2)
+- Grafana (Used for monitoring from part 2)
+- Grafana Loki (Used for monitoring from part 2)
+ 
+- OpenFaaS (Used as a serverless platform on part 5)
+
