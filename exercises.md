@@ -372,6 +372,7 @@ unfortunately i dont think k3d liked that manual triggering much, as i got error
  - tested it working, that it increases pongs counter for every request
 
 ## Task 5.06
+Also on ```part5/cncf-landscape.png```
 
 - MongoDB (Outside this course)
 - MariaDB (Outside this course)
